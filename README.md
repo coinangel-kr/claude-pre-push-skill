@@ -22,20 +22,16 @@ Optimized for **modern TypeScript full-stack web development**:
 ## Installation
 
 ```bash
-git clone https://github.com/coinangel-kr/claude-pre-push-skill.git ~/.claude/skills/pre-push
+git clone https://github.com/coinangel-kr/claude-pre-push-skill.git ~/.claude/skills/pre-push && cp ~/.claude/skills/pre-push/agents/*.md ~/.claude/agents/
 ```
 
-That's it. Claude Code picks up skills from `~/.claude/skills/` automatically — no restart needed.
+Then **restart Claude Code once** to load the agents. That's it — fully functional from the next session.
 
-### First push after install
+## Update
 
-On your first push, the skill auto-installs 6 bundled review agents to `~/.claude/agents/`. You'll see:
-
+```bash
+cd ~/.claude/skills/pre-push && git pull && cp agents/*.md ~/.claude/agents/
 ```
-ℹ️  Installed 6 agent(s) to ~/.claude/agents/. Restart Claude Code to activate them, then re-run your push command.
-```
-
-Restart Claude Code once, then push again — everything runs automatically from that point on.
 
 ## How it works
 
@@ -109,12 +105,6 @@ Say **"skip review"** or **"force push"** to bypass the entire pipeline. Claude 
 - **Perl** — pre-installed on macOS and most Linux distributions
 - **npm** — optional, for build/test steps
 - **Git**
-
-## Update
-
-```bash
-cd ~/.claude/skills/pre-push && git pull
-```
 
 ## License
 

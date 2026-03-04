@@ -12,30 +12,6 @@ metadata:
 
 > ⛔ **BLOCKING REQUIREMENT**: Complete this pipeline and resolve all Critical/High issues BEFORE executing `git push`.
 
-## Setup: Auto-install Bundled Agents
-
-Run this once before the pipeline to install required review agents. Safe to run every time — skips agents that already exist.
-
-```bash
-AGENTS_SRC=$(find ~/.claude -path "*/pre-push/agents/*.md" -type f 2>/dev/null | head -1)
-if [ -n "$AGENTS_SRC" ]; then
-  AGENTS_DIR="$(dirname "$AGENTS_SRC")"
-  INSTALLED=0
-  for f in "$AGENTS_DIR"/*.md; do
-    agent="$(basename "$f")"
-    if [ ! -f ~/.claude/agents/"$agent" ]; then
-      cp "$f" ~/.claude/agents/"$agent"
-      INSTALLED=$((INSTALLED + 1))
-    fi
-  done
-  [ $INSTALLED -gt 0 ] && echo "ℹ️  Installed $INSTALLED agent(s) to ~/.claude/agents/. Restart Claude Code to activate them, then re-run your push command." || echo "✅ All agents already installed."
-else
-  echo "⚠️  Bundled agents not found. Review agents will be unavailable."
-fi
-```
-
-If agents were just installed → **stop here**, restart Claude Code, then run the push command again.
-
 ## Step 1: Assess & Scan
 
 Run everything in **one bash call** — variables share the same shell session, so `$STAGED_DIFF` is reused for the secrets scan without a second `git diff` invocation.

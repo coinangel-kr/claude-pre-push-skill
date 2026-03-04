@@ -22,20 +22,16 @@ Claude Code용 필수 프리-푸시 보안 및 품질 파이프라인입니다. 
 ## 설치
 
 ```bash
-git clone https://github.com/coinangel-kr/claude-pre-push-skill.git ~/.claude/skills/pre-push
+git clone https://github.com/coinangel-kr/claude-pre-push-skill.git ~/.claude/skills/pre-push && cp ~/.claude/skills/pre-push/agents/*.md ~/.claude/agents/
 ```
 
-끝입니다. Claude Code는 `~/.claude/skills/` 폴더를 자동으로 인식합니다 — 재시작 불필요.
+이후 **Claude Code를 한 번 재시작**하면 끝입니다. 다음 세션부터 바로 사용 가능합니다.
 
-### 설치 후 첫 번째 푸시
+## 업데이트
 
-첫 푸시 시 스킬이 번들된 리뷰 에이전트 6개를 `~/.claude/agents/`에 자동 설치합니다:
-
+```bash
+cd ~/.claude/skills/pre-push && git pull && cp agents/*.md ~/.claude/agents/
 ```
-ℹ️  Installed 6 agent(s) to ~/.claude/agents/. Restart Claude Code to activate them, then re-run your push command.
-```
-
-Claude Code를 한 번 재시작한 뒤 다시 푸시하면 이후부터는 완전 자동으로 동작합니다.
 
 ## 동작 방식
 
